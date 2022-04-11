@@ -1,0 +1,42 @@
+﻿@model  IEnumerable<ExamenCodisa.Models.EmpleadoHabilidad>
+@{
+    ViewData["Title"] = "Skills";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Skills</h1>
+
+<div class="row">
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <td>@Html.DisplayNameFor(m => m.idEmpleado)</td>
+
+                    <td>@Html.DisplayNameFor(m => m.idHabilidad)</td>
+
+                    <td>@Html.DisplayNameFor(m => m.nombreHabilidad)</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.idEmpleado</td>
+
+                        <td>@item.idHabilidad</td>
+
+                        <td>@item.nombreHabilidad</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No existen registros</p>
+    }
+    
+</div>

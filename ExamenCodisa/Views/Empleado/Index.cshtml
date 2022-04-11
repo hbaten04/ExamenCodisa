@@ -1,0 +1,97 @@
+﻿@model ExamenCodisa.Models.EmpleadoArea
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+<div class="container">
+
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensaje"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Empleados</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block" asp-action="Create" asp-controller="Empleado">Crear empleado</a>
+        </div>
+
+    </div>
+    <hr />
+    <form asp-action="Index" method="post">
+
+        <div class="row">
+            <div class="col-md-4">
+                <select id="drpAreaList" class="form-control" asp-for="idEmpleadoArea" asp-items="@(new SelectList(Model.listArea, "idArea", "nombre"))">
+                    <option value="">--Areas--</option>
+                </select>
+                <input type="hidden" asp-for="idEmpleadoArea" />
+
+            </div>
+            <div class="col-md-2">
+                <input type="submit" name="btnSubmit" value="Buscar" class="btn btn-success" />
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            @if (Model.listEmpleado.Count() > 0)
+            {
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <td>ID EMPLEADO</td>
+
+                            <td>NOMBRE COMPLETO</td>
+
+
+                            <td>CORREO</td>
+                            <td>FOTO EMPLEADO</td>
+                            <td>Acciones</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.listEmpleado)
+                        {
+                            <tr>
+                                <td>@item.idEmpleado</td>
+
+                                <td>
+                                    <a asp-controller="Empleado"
+                                       asp-action="DetallesExtra"
+                                       asp-route-id="@item.idEmpleado"> @item.nombreCompleto</a>
+                                </td>
+
+                                <td>@item.correo</td>
+                                <td><img src="@item.fotoToStringUrl.ToString()" height="150" width="150" /> </td>
+                                <td>
+                                    <a asp-controller="Empleado" asp-action="Edit" asp-route-id="@item.idEmpleado" class="btn btn-warning">Editar</a>
+                                    <a asp-controller="Empleado" asp-action="Skills" asp-route-id="@item.idEmpleado" class="btn btn-warning">Habilidades</a>
+                                    <a asp-controller="Empleado" asp-action="CreateSkill" asp-route-id="@item.idEmpleado" class="btn btn-warning">Agregar Habilidades</a>
+                                    <a asp-controller="Empleado" asp-action="Delete" asp-route-id="@item.idEmpleado" class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No existen registros</p>
+            }
+        </div>
+
+    </form>
+</div>
+
+

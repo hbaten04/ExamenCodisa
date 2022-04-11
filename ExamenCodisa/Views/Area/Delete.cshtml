@@ -1,0 +1,47 @@
+﻿@model ExamenCodisa.Models.Area
+@{
+    ViewData["Title"] = "Eliminar Area";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Editar</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Eliminar Area</h3>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="DeleteArea">
+
+                <input type="hidden" asp-for="idArea" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="nombre" class="control-label"></label>
+                    <input disabled asp-for="nombre" class="form-control" />
+                    <span asp-validation-for="nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="descripcion" class="control-label"></label>
+                    <input disabled asp-for="descripcion" class="form-control" />
+                    <span asp-validation-for="descripcion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+
+                    <input type="submit" value="Eliminar Area" class="btn btn-danger" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

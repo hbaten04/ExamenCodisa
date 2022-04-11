@@ -1,0 +1,35 @@
+﻿@model ExamenCodisa.Models.EmpleadoHabilidad
+@{
+    ViewData["Title"] = "CreateSkill";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CreateSkill</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateSkill" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+
+            <div class="form-group">
+                <label asp-for="idEmpleado" class="control-label"></label>
+                <input asp-for="idEmpleado" value="@ViewBag.IdEmpleado" disabled />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="idHabilidad" class="control-label"></label>
+                <select id="drpJefe" class="form-control" asp-for="idHabilidad" asp-items="@(new SelectList(ViewBag.Habilidad, "idHabilidad", "nombreHabilidad"))">
+                    <option value="">--Habilidad--</option>
+                </select>
+                <input type="hidden" asp-for="idHabilidad" />
+                <span asp-validation-for="idHabilidad" class="text-danger"></span>
+            </div>
+            
+
+            <div class="form-group">
+                <input type="submit" value="Asociar habilidad" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
