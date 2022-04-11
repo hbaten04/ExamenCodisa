@@ -1,3 +1,5 @@
+using ExamenCodisa.DAO;
+using ExamenCodisa.Models;
 using ExamenCodisa.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +26,7 @@ namespace ExamenCodisa
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<ConexionConfiguracion>(Configuration.GetSection("CadenaDeConexion"));            
             services.AddSingleton<IService, Service>();
             services.AddControllersWithViews();
         }

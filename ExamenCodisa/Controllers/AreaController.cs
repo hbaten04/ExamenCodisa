@@ -18,10 +18,11 @@ namespace ExamenCodisa.Controllers
         private readonly ILogger<AreaController> _logger;
         //IConfiguration _configuration;
         string apiUrl = string.Empty;
-
+        private IConfiguration config;
         BArea objBArea = null;
-        public AreaController(ILogger<AreaController> logger)
+        public AreaController(ILogger<AreaController> logger, IConfiguration configuration)
         {
+            config = configuration;
             _logger = logger;
             //_configuration = configuration;
             //apiUrl = _configuration.GetValue<string>("UrlApi");

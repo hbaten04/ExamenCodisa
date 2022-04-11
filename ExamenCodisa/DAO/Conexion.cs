@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,9 +12,10 @@ namespace ExamenCodisa.DAO
     {
         public SqlConnection oCnx = null;
 
+        
         public Conexion()
         {
-            oCnx = new SqlConnection("Server=.;Database=Examen;Trusted_Connection=True;");
+            oCnx = new SqlConnection(ConfigurationManager.AppSettings["conexion"].ToString());
         }
 
         public void abrirConexion()
